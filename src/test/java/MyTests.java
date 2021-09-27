@@ -1,8 +1,21 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MyTests {
+    @Test
+    public void testRollDie() {
+        boolean[] found = new boolean[20]; //extra room just in case...
+        for (int i = 0; i < 10000; i++) {
+            int x = MyMain.rollDie();
+            found[x] = true;
+        }
+
+        for (int i = 1; i <= 6; i++) {
+            assertTrue(found[i], "The tester rolled 10000 dice using your rollDie() method, but it never rolled a: " + (i));
+        }
+    }
 
     @Test
     public void testProbabilityOneSix() {
@@ -18,5 +31,5 @@ public class MyTests {
     public void testProbabilityThreeSixes() {
         assertEquals(59.73, MyMain.probabilityThreeSixes(), 1.5, "The probability of rolling at least three 6;s after rolling eighteen dice should be around: 59.73%");
     }
-    
+
 }
