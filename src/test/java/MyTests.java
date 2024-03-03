@@ -1,35 +1,69 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MyTests {
     @Test
-    public void testRollDie() {
-        boolean[] found = new boolean[20]; //extra room just in case...
-        for (int i = 0; i < 10000; i++) {
-            int x = MyMain.rollDie();
-            found[x] = true;
-        }
-
-        for (int i = 1; i <= 6; i++) {
-            assertTrue(found[i], "The tester rolled 10000 dice using your rollDie() method, but it never rolled a: " + (i));
-        }
+    public void testGetEvens() {
+        assertEquals(Arrays.asList(2, 4, 6, 8), MyMain.getEvens(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8)));
+        assertEquals(Arrays.asList(2, 2, 2), MyMain.getEvens(Arrays.asList(1, 1, 2, 2, 1, 2)));
+        assertEquals(Collections.emptyList(), MyMain.getEvens(Arrays.asList(1, 3, 5, 7, 9)));
     }
 
     @Test
-    public void testProbabilityOneSix() {
-        assertEquals(66.51, MyMain.probabilityOneSix(), 1.5, "The probability of rolling at least one 6 after rolling six dice should be around: 66.51%");
+    public void testGetFirstSquare() {
+        assertEquals(Optional.of(9), MyMain.getFirstSquare(Arrays.asList(8, 9, 10, 11, 4)));
+        assertEquals(Optional.empty(), MyMain.getFirstSquare(Arrays.asList(2, 3)));
+        assertEquals(Optional.of(4), MyMain.getFirstSquare(Arrays.asList(3, 4, 5, 6, 7, 8, 9)));
     }
 
     @Test
-    public void testProbabilityTwoSixes() {
-        assertEquals(61.87, MyMain.probabilityTwoSixes(), 1.5, "The probability of rolling at least two 6's after rolling twelve dice should be around: 61.87%");
+    public void testContains7() {
+        assertFalse(MyMain.contains7(Arrays.asList(8, 9, 10, 11, 4)));
+        assertTrue(MyMain.contains7(Arrays.asList(8, 9, 10, 11, 7, 4)));
     }
 
     @Test
-    public void testProbabilityThreeSixes() {
-        assertEquals(59.73, MyMain.probabilityThreeSixes(), 1.5, "The probability of rolling at least three 6;s after rolling eighteen dice should be around: 59.73%");
+    public void testAllBiggerThan10() {
+        assertFalse(MyMain.allBiggerThan10(Arrays.asList(8, 9, 10, 11, 4)));
+        assertTrue(MyMain.allBiggerThan10(Arrays.asList(11, 12, 15, 18, 19)));
+        assertTrue(MyMain.allBiggerThan10(Collections.emptyList()));
     }
 
+    @Test
+    public void testFirstNAreNegative() {
+        assertTrue(MyMain.firstNAreNegative(3, Arrays.asList(-8, -9, -10, 11, 4)));
+        assertFalse(MyMain.firstNAreNegative(4, Arrays.asList(-8, -9, -10, 11, 4)));
+        assertTrue(MyMain.firstNAreNegative(5, Arrays.asList(-8, -9, -10, -11, -4)));
+    }
+
+    @Test
+    public void testSmallestNAreOdd() {
+        assertTrue(MyMain.smallestNAreOdd(3, Arrays.asList(5, 7, 8, 10, 3)));
+        assertFalse(MyMain.smallestNAreOdd(4, Arrays.asList(3, 1, 5, 11, 4)));
+        assertTrue(MyMain.smallestNAreOdd(5, Arrays.asList(1, 1, 3, 3, 5)));
+    }
+
+    @Test
+    public void testFirstFiveUniqueDoubled() {
+        assertEquals(Arrays.asList(2, 4, 6, 12, 8), MyMain.firstFiveUniqueDoubled(Arrays.asList(1, 1, 2, 3, 2, 6, 1, 4, 10)));
+        assertEquals(List.of(6), MyMain.firstFiveUniqueDoubled(Arrays.asList(3, 3, 3, 3, 3, 3, 3, 3, 3, 3)));
+    }
+
+    @Test
+    public void testWordsThatStartWithVowels() {
+        assertEquals(Arrays.asList("onion", "arugula", "olive"), MyMain.wordsThatStartWithVowels(Arrays.asList("pepper", "onion", "lettuce", "arugula", "olive")));
+        assertEquals(Collections.singletonList("art"), MyMain.wordsThatStartWithVowels(Arrays.asList("art", "science", "math")));
+    }
+
+    @Test
+    public void testPalindromesWithoutNumbers() {
+        assertEquals(Arrays.asList("a", "racecar", "mom"), MyMain.palindromesWithoutNumbers(Arrays.asList("1", "a", "racecar", "151", "rac3car", "mom")));
+        assertEquals(Arrays.asList("amanaplanacanalpanama", ""), MyMain.palindromesWithoutNumbers(Arrays.asList("amanaplanacanalpanama", "palindrome", "")));
+    }
 }
