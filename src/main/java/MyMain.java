@@ -27,7 +27,7 @@ public class MyMain {
         return false;
     }
 
-    // Return whether every number in the input collection is bigger than 7.
+    // Return whether every number in the input collection is bigger than 10.
     // Intermediate operations: 0
     public static boolean allBiggerThan10(Collection<Integer> nums) {
         // REPLACE YOUR CODE HERE
