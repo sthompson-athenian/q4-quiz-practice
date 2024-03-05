@@ -58,7 +58,7 @@ public class MyMain {
 
     // Returns the words in input list that start with vowels.
     // For this function, do not count "y" as a vowel.
-    // Intermediate operations: 2
+    // Intermediate operations: 1
     public static Collection<String> wordsThatStartWithVowels(Collection<String> list) {
         // REPLACE YOUR CODE HERE
         return Collections.emptyList();
