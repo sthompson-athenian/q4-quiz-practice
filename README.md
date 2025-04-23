@@ -1,9 +1,7 @@
-# Dice Methods
+# Q4 Quiz Practice
 
-In this assignment, you'll be writing some code to practice using Streams in Java.
-Each of your functions should just be a single statement. You don't need any loops! The number of intermediate
-operations allowed for each function is listed above it. Note that these do not include the call to stream() or
-any terminal operations such as collect() or allMatch().
+This assignment contains additional practice problems covering Streams,
+Optionals, Comparators, Functional Interfaces, and the ternary operator.
 
 <br />
 <br />
